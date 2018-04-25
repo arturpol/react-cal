@@ -1,0 +1,265 @@
+@import 'settings';
+@import 'foundation';
+
+//@include foundation-everything;
+
+@include foundation-global-styles;
+@include foundation-xy-grid-classes;
+//@include foundation-grid;
+//@include foundation-flex-grid;
+@include foundation-flex-classes;
+
+
+//@include foundation-typography;
+@include foundation-typography-base;
+@include foundation-typography-helpers;
+@include foundation-text-alignment;
+//@include foundation-print-styles;
+
+
+@include foundation-forms;
+@include foundation-button;
+//@include foundation-accordion;
+//@include foundation-accordion-menu;
+//@include foundation-badge;
+//@include foundation-breadcrumbs;
+@include foundation-button-group;
+//@include foundation-callout;
+//@include foundation-card;
+//@include foundation-close-button;
+@include foundation-menu;
+//@include foundation-menu-icon;
+//@include foundation-drilldown-menu;
+//@include foundation-dropdown;
+//@include foundation-dropdown-menu;
+//@include foundation-responsive-embed;
+//@include foundation-label;
+//@include foundation-media-object;
+//@include foundation-off-canvas;
+//@include foundation-orbit;
+//@include foundation-pagination;
+//@include foundation-progress-bar;
+//@include foundation-slider;
+//@include foundation-sticky;
+//@include foundation-reveal;
+//@include foundation-switch;
+//@include foundation-table;
+//@include foundation-tabs;
+//@include foundation-thumbnail;
+@include foundation-title-bar;
+//@include foundation-tooltip;
+@include foundation-top-bar;
+@include foundation-visibility-classes;
+//@include foundation-float-classes;
+
+.grid-y{
+	&.align-center{
+		height: 100%;
+	}
+}
+
+ul{
+	&.inline{
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		line-height: $global-lineheight;
+		
+		li{
+			display: inline;
+		}
+	}
+}
+
+.filters{
+	padding: $global-padding / 2;
+	border-bottom: 1px solid $light-gray;
+	
+	ul{
+		li{
+			&:last-child{
+				label{
+					margin-right: 0;
+				}
+			}
+			
+			label{
+				color: inherit;
+				font-weight: $global-weight-bold;
+			}
+			
+			input{
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.week-header{
+	
+	border-bottom: 1px solid $light-gray;
+	
+	.day{
+		
+		&.today{
+			box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+			
+			h2, h6{
+				color: $primary-color;
+			}
+		}
+		
+		h6{
+			margin: 0;
+		}
+		
+		h2{
+			margin: 0 0 $global-padding / 2 0;
+			line-height: 1;
+		}
+		
+		ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			
+			li{
+				line-height: 1;
+				padding: 0;
+				margin: 0;
+			}
+		}
+	}
+	
+	.day,
+	.hours{
+		padding-top: $global-padding / 2;
+		padding-bottom: $global-padding / 2;
+	}
+	
+	.hours{
+		text-align: right;
+	}
+}
+
+.week-body{
+	
+	& > .grid-x{
+		height: 100%;
+	}
+	
+	.day{
+		position: relative;
+		
+		& > .grid-y{
+			height: 100%;
+		}
+		
+		.hour{
+			border-bottom: 1px solid rgba($light-gray, 0.5);
+		}
+		
+		ul{
+			list-style: none;
+			line-height: 1;
+			margin: 0;
+			padding: 0;
+		}
+		
+		li{
+			position: absolute;
+			left: 0;
+			width: 100%;
+			padding: 0 $global-padding;
+			display: block;
+		}
+		
+		.event{
+			height: 100%;
+		}
+	}
+	
+	.hours{
+		position: relative;
+		
+		ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			line-height: 1;
+		}
+		
+		li{
+			position: absolute;
+			left: 0;
+			width: 100%;
+			padding: 0 $global-padding;
+			display: block;
+			font-size: 0.75rem;
+			color: $dark-gray;
+			text-align: right;
+			
+			&:first-child,
+			&:last-child{
+				display: none;
+			}
+		}
+	}
+	
+}
+
+.week{
+	
+	& > .grid-y{
+		height: 100%;	
+	}
+	
+	.day{
+		border-left: 1px solid $light-gray;
+	}
+}
+
+.event{
+	border-radius: $global-radius;
+	padding: $global-padding / 4 $global-padding / 2;
+	font-size: 0.75rem;
+	line-height: 1.35;
+}
+
+@media print{
+	
+	*{
+		-webkit-print-color-adjust: exact !important;
+		color-adjust: exact !important;
+		print-color-adjust: exact !important;
+		box-shadow: none !important;
+	}
+	
+	html{
+		font-size: 85%;
+	}
+	
+	header{
+		display: none;
+	}
+	
+	.week-header{
+		.day{
+			&.today{
+				h2, h6{
+					color: $header-color;
+				}
+			}
+		}
+	}
+	
+	.week-body{
+		.day{
+			li{
+				padding: 0 $global-padding / 4;
+				width: 50%;
+			}
+		}
+	}
+	
+}
