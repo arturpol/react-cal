@@ -16,7 +16,7 @@ const config = {
 	
 	day: {
 		hourStart: 8,
-		hourEnd: 2
+		hourEnd: 1
 	},
 	
 	events: {

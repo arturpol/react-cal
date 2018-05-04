@@ -17,3 +17,7 @@ Calculator based on React with print styles.
 11. [Gulp v.3.9](https://gulpjs.com/)
 12. [Font Awesome v.4.7](https://fontawesome.com/)
 13. [NPM](https://www.npmjs.com/)
+
+## Run
+
+```$ gulp```

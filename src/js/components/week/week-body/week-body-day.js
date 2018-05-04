@@ -71,7 +71,13 @@ class WeekBodyDay extends React.Component {
 			if(height > 100) height = 100;
 			else if(height <= 0) height = 2;
 			
-			if(top < 0) top = 0;
+			if(top < 0){
+				
+				height += top;
+				top = 0;
+				
+			}
+			
 			if(top + height > 100) height = 100 - top;
 			
 			height += '%';

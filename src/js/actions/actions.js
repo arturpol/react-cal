@@ -20,6 +20,8 @@ export const setDefaults = () => {
 	
 	let timeZone = localStorage.getItem(config.timeZone.key);
 	
+	if(!timeZone) timeZone = config.timeZone.def;
+	
 	let settings = {
 		timeZone
 	};

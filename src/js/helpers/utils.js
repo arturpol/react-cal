@@ -70,17 +70,69 @@ class Utilities{
 					maxResults: config.events.limitPerCalendar,
 					timeMax: end.toJSON(),
 					timeMin: start.toJSON(),
-					timeZone
+					timeZone,
+					showDeleted: false,
+					singleEvents: true
 				})
 			};
 
 		});
 		
 		return Promise.all(calendars.map( calendar => calendar.promise )).then((responses) => {
+			
+			return Promise.all(responses.map((response, index) => {
+				
+				let items = response.result.items;
+				let calendarId = calendars[index].id;
+				let regular = [],
+					recurring = [];
+				
+				items.forEach(item => {
+					
+					if(item.status == 'cancelled') return;
+					if(Array.isArray(item.recurrence)) recurring.push(item);
+					regular.push(item);
+					
+				});
 
-			var events = {};
-			responses.forEach((response, index) => events[calendars[index].id] = response.result.items);
-			return events;
+				return Promise.all(recurring.map(item => {
+
+					let timeMin = start.toJSON();
+
+					if(item.end) timeMin = item.end.dateTime ? item.end.dateTime : this.parseDate(item.end.date);
+					else timeMin = item.start.dateTime ? item.start.dateTime : this.parseDate(item.start.date);
+
+					return client.calendar.events.instances({
+						calendarId,
+						eventId: item.id,
+						maxResults: config.events.limitPerCalendar,
+						timeMax: end.toJSON(),
+						timeMin,
+						timeZone,
+						showDeleted: false
+					});
+
+				})).then((itemResponses) => {
+					
+					itemResponses.forEach((itemResponse, index) => {
+						
+						let confirmed = itemResponse.result.items.filter(i => i.status != 'cancelled');
+						regular = regular.concat(confirmed);
+						
+					});
+					
+					return regular;
+					
+				});
+				
+			})).then(results => {
+				
+				var events = {};
+				results.forEach((result, index) => events[calendars[index].id] = result);
+				return events;
+				
+			});
+			
 			
 		});
 

@@ -20,15 +20,18 @@ function reduceEvents(calendars){
 			
 			let { id, creator, description, end, location, start, summary } = j;
 			
-			return {
+			let result = {
 				id,
-				creator: { self: creator.self, displayName: creator.displayName },
 				description,
 				end,
 				location,
 				start,
 				summary
 			};
+			
+			if(creator) result.creator = { self: creator.self, displayName: creator.displayName };
+			
+			return result;
 			
 		});
 		

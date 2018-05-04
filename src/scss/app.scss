@@ -236,7 +236,7 @@ ul{
 	}
 	
 	html{
-		font-size: 85%;
+		font-size: 80%;
 	}
 	
 	header{
@@ -260,6 +260,61 @@ ul{
 				width: 50%;
 			}
 		}
+	}
+	
+}
+
+#back{
+	
+	.full-height{
+		height: 100%;
+	}
+	
+	.vert-border{
+		border-top: 1px solid $light-gray;
+		border-bottom: 1px solid $light-gray;
+	}
+	
+	.bottom-border{
+		border-bottom: 1px solid $light-gray;
+	}
+	
+	.bottom-border-dark{
+		border-bottom: 1px solid $medium-gray;
+	}
+	
+	.border-right{
+		border-right: 1px solid $light-gray;
+	}
+	
+	h4, h5{
+		font-weight: $global-weight-bold;
+	}
+	
+	h4{
+		font-size: 1.2rem;
+		padding-bottom: 0.4rem;
+		
+		i{
+			color: $dark-gray;
+			margin-right: 0.2rem;
+		}
+	}
+	
+	h5{
+		font-size: 1rem;
+		
+		i{
+			color: $dark-gray;
+			margin-right: 0.2rem;
+		}
+	}
+	
+	h6{
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		color: $dark-gray;
+		font-weight: $global-weight-normal;
 	}
 	
 }
